@@ -64,22 +64,8 @@ SELECT SUM(count) FROM retiring_titles
 The number of employees that are eligible for mentorship at Pewlett Hackard is 1549. Since there are 90,398 employees that are about to retire, there is a very big mismatch that will need to be addressed. I'm assuming that the employees born in 1965 are supposed to be the mentors? if that is the case, then there are very few mentors for very many vacancies. It would be good to check if there are potential employees that could fill this gap from other years not only 1965. Unless there is a specific reason for shoosing this year only. The way to do that would be with the following code:
 (e.birth_date BETWEEN '1965-01-01' AND '1965-12-31') instead of 1965 insert a larger range of years. For example the following code can be used:
 
-SELECT DISTINCT ON (e.emp_no)
-	e.emp_no,
-	e.first_name,
-	e.last_name,
-	e.birth_date,
-	de.from_date,
-	de.to_date,
-	ti.title
-INTO mentorship_eligibility
-FROM employees AS e
-INNER JOIN dept_emp as de
-ON (e.emp_no=de.emp_no)
-INNER JOIN titles AS ti
-ON (e.emp_no=ti.emp_no)	
-WHERE de.to_date = '9999-01-01'
-AND(e.birth_date BETWEEN '1964-01-01' AND '1968-12-31')
+#### Image of table 5
+![table_5.png](Queries/table_5.PNG)
 ORDER BY e.emp_no 
 
 
